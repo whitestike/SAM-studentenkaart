@@ -2,21 +2,42 @@ import nfc
 from nfc.clf import RemoteTarget
 from time import sleep
 
-clf = nfc.ContactlessFrontend('usb')
+def Scan():
+    clf = nfc.ContactlessFrontend('usb')
 
-scanedUid = ""
+    scanedUid = ""
 
-while True:
-    target = clf.sense(RemoteTarget('106A'), RemoteTarget('106B'), RemoteTarget('212F'))
+    while scanedUid == "" or scanedUid == None:
+        target = clf.sense(RemoteTarget('106A'), RemoteTarget('106B'), RemoteTarget('212F'))
+        
+        if target is None:
+            scanedUid = target
+            sleep(0.25)
+            continue
+
+        serial = target.sdd_res.hex()
+
+        scanedUid = serial
+
+        sleep(0.25)
+
+    return scanedUid
+
+def main():
+
+    print("scanning...")
+
+    studentID = Scan()
+
+    print(studentID)
+
+    if studentID == "e95a8ef7":
+        print("welkome Rickert Goyvaerts")
+    else:
+        print("studentID not recognised")
     
-    if target is None:
-        scanedUid = target
-        print(scanedUid)
-        continue
+    sleep(1)
+    main()
 
-    serial = target.sdd_res.hex()
+main()
 
-    scanedUid = serial
-
-    print(scanedUid)
-    sleep(0.2)  # don't burn the CPU
