@@ -1,13 +1,22 @@
-from smartcard.System import readers
-from smartcard.util import toHexString
+import nfc
+from nfc.clf import RemoteTarget
+from time import sleep
 
+clf = nfc.ContactlessFrontend('usb')
 
-r = readers()
-print (r[0]) 
-connection = r[0].createConnection()
-connection.connect()
-print (connection) 
-SELECT = [0xA0, 0xA4, 0x00, 0x00, 0x02]
-DF_TELECOM = [0x7F, 0x10]
-data, sw1, sw2 = connection.transmit( SELECT + DF_TELECOM )
-print ("%x %x" % (sw1, sw2))
+scanedUid = ""
+
+while True:
+    target = clf.sense(RemoteTarget('106A'), RemoteTarget('106B'), RemoteTarget('212F'))
+    
+    if target is None:
+        scanedUid = target
+        print(scanedUid)
+        continue
+
+    serial = target.sdd_res.hex()
+
+    scanedUid = serial
+
+    print(scanedUid)
+    sleep(0.2)  # don't burn the CPU
