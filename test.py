@@ -25,19 +25,14 @@ def Scan():
 
 def main():
 
-    print("scanning...")
-
-    studentID = Scan()
-
-    print(studentID)
-
-    if studentID == "e95a8ef7":
-        print("welkome Rickert Goyvaerts")
-    else:
-        print("studentID not recognised")
+    scan = Scan()
     
-    sleep(1)
+    print(scan)
+
+    if scan == "9850f946":
+        command = input("command: ")
+        print(command)
+
     main()
 
 main()
-
