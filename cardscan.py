@@ -67,11 +67,12 @@ def main():
 
     #    main()
 
-    if studentID in studentList:
-        print("card already scanned")
-        main()
     
     student = GetData(studentID)
+
+    if student[2] + " " + student[3] in studentList:
+        print("card already scanned")
+        main()
 
     studentList.append(student[2] + " " + student[3])
     print("welcome " + student[2] + " " + student[3])
