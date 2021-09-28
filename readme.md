@@ -5,3 +5,5 @@ also for the nfc device to work on your pc you need to install the driver for th
     we used acr122u -> https://www.acs.com.hk/en/products/3/acr122u-usb-nfc-reader/ top link
 
 at last before you start you need to download the libusb files end put them in the right files
+
+see that your database login is filled in otherwise its not going to work

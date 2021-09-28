@@ -4,7 +4,7 @@ from time import sleep
 import secrets
 import pymysql
 
-studentsPresent = []
+studentList = []
 
 def Scan():
     clf = nfc.ContactlessFrontend('usb')
@@ -52,21 +52,28 @@ def main():
     studentID = Scan()
 
     #if studentID == "e95a8ef7":
+    #    print("debug mode")
     #    command = input("command: ")
-    #    if input == "printlist":
-    #        for student in list:
+
+    #    if command == "printlist":
+    #        for student in studentList:
     #            print(student)
+    #    elif command.startswith("lookup"):
+
+    #        command = command.split()
+
+    #        if command[1] + " " + command[2] in studentList:
+    #            print(command[1] + " " + command[2] + " has scanned card")
+
     #    main()
 
-    if studentID in studentsPresent:
+    if studentID in studentList:
         print("card already scanned")
         main()
     
     student = GetData(studentID)
-    print("card has been scanned: " + studentID)
 
-
-    studentsPresent.append(studentID)
+    studentList.append(student[2] + " " + student[3])
     print("welcome " + student[2] + " " + student[3])
 
     
