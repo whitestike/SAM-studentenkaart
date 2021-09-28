@@ -1,6 +1,7 @@
 import nfc
 from nfc.clf import RemoteTarget
 from time import sleep
+import secrets
 import pymysql
 
 studentsPresent = []
@@ -27,14 +28,14 @@ def Scan():
     return scanedUid
 
 def ConnectToDB():
-    db = pymysql.connect(host="localhost", user="root", password="root", database="nfcstudent_test" )
+    db = pymysql.connect(host = secrets.HOST, user = secrets.USER, password = secrets.PASSWORD, database = secrets.DB)
     return db.cursor()
 
 
 def GetData(UID):
     DB = ConnectToDB()
 
-    sql = "SELECT * FROM STUDENT WHERE UID = '" + UID + "'"
+    sql = "SELECT * FROM `students` WHERE serial_number = '" + UID + "'"
 
     DB.execute(sql);
     return DB.fetchone()
@@ -66,7 +67,7 @@ def main():
 
 
     studentsPresent.append(studentID)
-    print("welcome " + student[1] + " " + student[2])
+    print("welcome " + student[2] + " " + student[3])
 
     
     sleep(1)
