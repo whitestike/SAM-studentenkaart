@@ -7,6 +7,18 @@ import pusher
 
 studentList = []
 
+def Send(msg):
+
+    pusher_client = pusher.Pusher(
+        app_id='1275452',
+        key='92353ee8426715c5cc4f',
+        secret='c5e4a1a431e5d39cdc8d',
+        cluster='eu',
+        ssl=True
+    )
+
+    pusher_client.trigger('my-channel', 'my-event', {'message': msg})
+
 def Scan():
     clf = nfc.ContactlessFrontend('usb')
 
@@ -78,6 +90,8 @@ def main():
     if student == None:
         student = GetData(studentID, "teachers")
 
+    Send(studentID)
+
     if student[2] + " " + student[3] in studentList:
         print("card already scanned")
         main()
@@ -94,4 +108,3 @@ def main():
 
 
 main()
-InitPusher()
