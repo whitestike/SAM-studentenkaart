@@ -1,38 +1,16 @@
-import nfc
-from nfc.clf import RemoteTarget
-from time import sleep
+import pusher
 
-def Scan():
-    clf = nfc.ContactlessFrontend('usb')
+def InitPusher():
 
-    scanedUid = ""
+    pusher_client = pusher.Pusher(
+        app_id='1275452',
+        key='92353ee8426715c5cc4f',
+        secret='c5e4a1a431e5d39cdc8d',
+        cluster='eu',
+        ssl=True
+    )
 
-    while scanedUid == "" or scanedUid == None:
-        target = clf.sense(RemoteTarget('106A'), RemoteTarget('106B'), RemoteTarget('212F'))
-        
-        if target is None:
-            scanedUid = target
-            sleep(0.25)
-            continue
+    pusher_client.trigger('my-channel', 'my-event', {'message': 'hello world'})
 
-        serial = target.sdd_res.hex()
 
-        scanedUid = serial
-
-        sleep(0.25)
-
-    return scanedUid
-
-def main():
-
-    scan = Scan()
-    
-    print(scan)
-
-    if scan == "9850f946":
-        command = input("command: ")
-        print(command)
-
-    main()
-
-main()
+InitPusher()
