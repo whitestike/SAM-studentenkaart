@@ -18,7 +18,7 @@ def InitPusher():
     )
 
     pusher_client.trigger('my-channel', 'my-event', {'message': 'hello world'})
-    
+
 
 def Scan():
     clf = nfc.ContactlessFrontend('usb')
@@ -107,3 +107,4 @@ def main():
 
 
 main()
+InitPusher()
