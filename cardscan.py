@@ -71,15 +71,18 @@ def main():
     if False:
         Debug(studentID)
 
-    if studentID in studentList:
-        print("card already scanned")
-        main()
     
     student = GetData(studentID, "students")
 
     if student == None:
         student = GetData(studentID, "teachers")
 
+<<<<<<< HEAD
+=======
+    if student[2] + " " + student[3] in studentList:
+        print("card already scanned")
+        main()
+>>>>>>> a297745263a5959220c00fdcc945123f347ac451
         print("welcome " + student[2] + " " + student[3])
     else:
         studentList.append(student[2] + " " + student[3])
