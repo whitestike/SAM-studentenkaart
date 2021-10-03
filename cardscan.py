@@ -26,6 +26,7 @@ def Scan():
         clf = nfc.ContactlessFrontend('usb')
     except:
         print("nfc device not connected")
+        Exit()
 
 
     scanedUid = ""
@@ -48,7 +49,6 @@ def Scan():
 
 
 def main():
-
     print("scanning...")
 
     studentID = Scan()
