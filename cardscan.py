@@ -18,7 +18,11 @@ def Send(msg):
     pusher_client.trigger('my-channel', 'my-event', {'message': msg})
 
 def Scan():
-    clf = nfc.ContactlessFrontend('usb')
+
+    try:
+        clf = nfc.ContactlessFrontend('usb')
+    except:
+        print("nfc device not connected")
 
     scanedUid = ""
 
