@@ -19,6 +19,7 @@ def Send(msg):
 
 def Exit():
     print("device shutting down")
+    exit()
 
 def Scan():
 
