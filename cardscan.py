@@ -61,5 +61,5 @@ def main():
     main()
 
 
-
+Send("scanner starting up!!!")
 main()
