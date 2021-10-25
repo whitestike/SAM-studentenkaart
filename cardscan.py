@@ -47,10 +47,14 @@ def Scan():
             sleep(0.25)
             continue
 
-        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
-        Write(tag)
-        record = tag.ndef
-        print(record)
+        tag = nfc.tag.activate(clf, target)
+
+        if not tag.ndef:
+            print("No NDEF records found!")
+            continue
+        
+        for record in tag.ndef.records:
+            print("Found record: " + record)
         
         scanedUid = target.sdd_res.hex()
 
