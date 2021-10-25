@@ -40,6 +40,7 @@ def Scan():
             sleep(0.25)
             continue
 
+        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
         assert tag.ndef is not None
         for record in tag.ndef.records:
             print(record)
