@@ -40,7 +40,7 @@ def Scan():
             sleep(0.25)
             continue
 
-        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+        tag = clf.connect(rdwr={'on-connect': connected})
         record = tag.ndef
         print(record)
         
