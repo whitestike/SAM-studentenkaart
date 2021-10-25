@@ -41,7 +41,7 @@ def Scan():
             continue
 
         tag = clf.connect(rdwr={'on-connect': lambda tag: False})
-        record = tag.ndef
+        record = tag
         print(record)
         
         scanedUid = target.sdd_res.hex()
