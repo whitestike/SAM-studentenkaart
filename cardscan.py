@@ -40,11 +40,12 @@ def Scan():
             sleep(0.25)
             continue
 
-        scanedUid = target.sdd_res
-
+        tag = nfc.tag.activate(clf, target)
+        scanedUid = target.sdd_res.hex()
+        
         sleep(0.25)
 
-    return scanedUid
+    return tag
 
 
 def main():
