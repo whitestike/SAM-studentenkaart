@@ -40,9 +40,7 @@ def Scan():
             sleep(0.25)
             continue
 
-        serial = target.sdd_res.hex()
-
-        scanedUid = serial
+        scanedUid = target.sdd_res
 
         sleep(0.25)
 
