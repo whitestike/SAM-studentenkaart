@@ -22,7 +22,7 @@ def Exit():
     print("device shutting down")
     exit()
 
-def Write(tag)
+def Write(tag):
     record = ndef.TextRecord("0140331-69")
     tag.ndef.records = [record]
 
