@@ -49,12 +49,8 @@ def Scan():
 
         tag = nfc.tag.activate(clf, target)
 
-        if not tag.ndef:
-            print("No NDEF records found!")
-            continue
-        
-        for record in tag.ndef.records:
-            print("Found record: " + record)
+        print(tag)
+        print(tag.ndef)
         
         scanedUid = target.sdd_res.hex()
 
