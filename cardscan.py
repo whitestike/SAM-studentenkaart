@@ -40,8 +40,9 @@ def Scan():
             sleep(0.25)
             continue
 
-        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
-        print(tag)
+        assert tag.ndef is not None
+        for record in tag.ndef.records:
+            print(record)
         
         scanedUid = target.sdd_res.hex()
 
