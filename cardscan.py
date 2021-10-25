@@ -40,7 +40,7 @@ def Scan():
             sleep(0.25)
             continue
 
-        tag = nfc.tag.activate(clf, target)
+        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
         print(tag)
         
         scanedUid = target.sdd_res.hex()
