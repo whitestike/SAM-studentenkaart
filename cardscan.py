@@ -2,6 +2,7 @@ import nfc
 from nfc.clf import RemoteTarget
 from time import sleep
 import pusher
+import ndef
 
 studentList = []
 
@@ -21,6 +22,10 @@ def Exit():
     print("device shutting down")
     exit()
 
+def Write(tag)
+    record = ndef.TextRecord("0140331-69")
+    tag.ndef.records = [record]
+
 def Scan():
 
     try:
@@ -34,13 +39,16 @@ def Scan():
 
     while scanedUid == "" or scanedUid == None:
         target = clf.sense(RemoteTarget('106A'), RemoteTarget('106B'), RemoteTarget('212F'))
+
+        
         
         if target is None:
             scanedUid = target
             sleep(0.25)
             continue
 
-        tag = clf.connect(rdwr={'on-connect': connected})
+        tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+        Write(tag)
         record = tag.ndef
         print(record)
         
