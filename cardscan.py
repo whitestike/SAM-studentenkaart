@@ -16,7 +16,7 @@ def Send(msg):
         ssl=True
     )
 
-    pusher_client.trigger('my-channel', 'my-event', {'message': msg})
+    pusher_client.trigger('scanner-channel', 'scanner-1', {'message': msg})
 
 def Exit():
     print("device shutting down")
